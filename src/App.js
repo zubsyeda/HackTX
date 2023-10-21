@@ -1,4 +1,6 @@
+import React from 'react';
 import './App.css';
+import Dropdown from './components/dropdown';
 
 // function MyButton() {
 //   return (
@@ -18,6 +20,7 @@ function App() {
   return (
     <div className="App">
       <h1 className="header">Welcome to ProjectName</h1>
+      <Dropdown />
       <InputChatBox/>
       <button className="send"><img alt="Send" /></button>
     </div>
