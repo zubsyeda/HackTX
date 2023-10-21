@@ -1,12 +1,29 @@
 import React from 'react';
 import './App.css';
-//import Dropdown from './components/dropdown';
+import Dropdown from 'react-bootstrap/Dropdown';
 
 // function MyButton() {
 //   return (
 //     <button>I'm a button</button>
 //   );
 // }
+
+
+function Menu() {
+  return (
+    <Dropdown>
+      <Dropdown.Toggle variant="success" id="dropdown-basic">
+        Select company
+      </Dropdown.Toggle>
+
+      <Dropdown.Menu>
+        <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+        <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+        <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+      </Dropdown.Menu>
+    </Dropdown>
+  );
+}
 
 function InputChatBox() {
   return (
@@ -20,16 +37,7 @@ function App() {
   return (
     <div className="App">
       <h1 className="header">Welcome to ProjectName</h1>
-      <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Select company
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#">Ask_Spectrum</a>
-          <a class="dropdown-item" href="#">AmazonHelp</a>
-          <a class="dropdown-item" href="#">AppleSupport</a>
-        </div>
-      </div>
+      <Menu/>
       <InputChatBox/>
       <button className="send"><img alt="Send" /></button>
     </div>
