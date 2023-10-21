@@ -37,9 +37,33 @@ const ChatBot = () => {
     var score = sentiment.analyze(response);
     if (score <= 0) {
         // output positive response using chatgpt api
+        const positiveResponse = await generatePositiveResponse(response);
+
+        response = positiveResponse;
     }
 
     return response;
+  };
+
+  const generatePositiveResponse = async (input) => {
+    // Replace with your ChatGPT API endpoint and API key
+    const chatGptApiUrl = 'YOUR_CHATGPT_API_ENDPOINT';
+    const apiKey = 'YOUR_API_KEY';
+  
+    try {
+      const response = await axios.post(chatGptApiUrl, {
+        prompt: `Transform this negative message into a positive one: ${input}`,
+      }, {
+        headers: {
+          Authorization: `Bearer ${apiKey}`,
+        },
+      });
+  
+      return response.data.choices[0].text;
+    } catch (error) {
+      console.error(error);
+      return "I'm glad you're here! How can I assist you today?";
+    }
   };
 
   return (
