@@ -48,7 +48,7 @@ const ChatBot = () => {
   const generatePositiveResponse = async (input) => {
     // Replace with your ChatGPT API endpoint and API key
     const chatGptApiUrl = 'YOUR_CHATGPT_API_ENDPOINT';
-    const apiKey = 'YOUR_API_KEY';
+    const apiKey = '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';
   
     try {
       const response = await axios.post(chatGptApiUrl, {
