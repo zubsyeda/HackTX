@@ -1,5 +1,3 @@
-import React, { useState, useEffect } from 'react';
-import Sentiment from 'sentiment';
 import './App.css';
 
 function MyButton() {
