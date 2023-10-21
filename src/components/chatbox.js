@@ -52,7 +52,7 @@ const ChatBot = () => {
   
     try {
       const response = await axios.post(chatGptApiUrl, {
-        prompt: `Transform this negative message into a positive one: ${input}`,
+        prompt: `Transform this response to a customer to be friendlier: ${input}`,
       }, {
         headers: {
           Authorization: `Bearer ${apiKey}`,
