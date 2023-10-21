@@ -17,7 +17,7 @@ function InputChatBox() {
 function App() {
   return (
     <div className="App">
-      <h1 className="header">Welcome to CustomerSupports Support</h1>
+      <h1 className="header">Welcome to ProjectName</h1>
       <InputChatBox/>
       <button className="send"><img alt="Send" /></button>
     </div>
