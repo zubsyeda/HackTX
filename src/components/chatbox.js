@@ -1,6 +1,15 @@
 import React, { useState } from 'react';
 import Sentiment from 'sentiment';
 
+import OpenAI from 'openai';
+
+
+const openai = new OpenAI({
+  apiKey: "",
+  dangerouslyAllowBrowser: true
+});
+
+
 const ChatBot = () => {
   const [userInput, setUserInput] = useState('');
   const [chatLog, setChatLog] = useState([]);
@@ -15,12 +24,21 @@ const ChatBot = () => {
     let response;
 
     if (sentiment.score <= 0) {
-      // Generate a response for negative sentiment
-      response = "Revise your feedback response to include more approachable and customer-friendly language";
+      let chatGPTPrompt = "Make this message more friendly whilst being concise: " + userInput;
+      const chatCompletion = await openai.chat.completions.create({
+          model: "gpt-3.5-turbo",
+          messages: [{ role: "user", content: chatGPTPrompt }],
+        })
+        .then((res) => {
+          response = res.choices[0].message.content;
+        })
+        .catch((e) => {
+          response = "Revise your feedback response to include more approachable and customer-friendly language"; 
+        });
     } else {
-      // Provide a different response for positive sentiment or neutral input
-      response = "Thank you for your input. Is there anything else you'd like to discuss?";
+      response = "Your input has been identified as neutral/positive. Is there anything else you'd like to discuss?";
     }
+    
 
     // Update the chat log with user input and the response
     setChatLog([...chatLog, { type: 'user', message: userInput }, { type: 'bot', message: response }]);
