@@ -51,3 +51,14 @@ h1 {
   line-height: normal;
   text-transform: uppercase;
 }
+.sidebar{
+  text-align: center;
+  margin-top: 20%;
+  color: #000;
+  font-family: 'Oswald';
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-transform: uppercase;
+}

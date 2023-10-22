@@ -49,7 +49,9 @@ function App() {
             <Route path="/pagethree" element={<PageThree />} />
           </Routes>
         </Router>
-
+        <div className='sidebar'>
+          <h1>ChatBox</h1>
+        </div>
     </div>
     
   );

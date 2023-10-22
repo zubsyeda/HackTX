@@ -2,6 +2,14 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Sentiment from 'sentiment';
 
+function InputChatBox() {
+    return (
+      <form>
+        <input type="text" id="input"></input>
+      </form>
+    );
+  }
+  
 const ChatBot = () => {
   const [userInput, setUserInput] = useState('');
   const [chatLog, setChatLog] = useState([]);
