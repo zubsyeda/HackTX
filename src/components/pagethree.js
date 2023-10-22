@@ -10,7 +10,7 @@ function getSentiments() {
   var headers;
   headers = lines[0].split(",");
   for (var i = 1; i < array.length; i++) {
-    if (array[i][2] == FALSE) {
+    if (array[i][1] == "AppleSupport") {
       var tweet = array[i][4].substring(0,array[i][4].indexOf(" "));
       var Sentiment = require('sentiment');
       var sentiment = new Sentiment();
@@ -18,6 +18,7 @@ function getSentiments() {
       scores.push(score);
     }
   }
+  return scores;
 };
 
 
