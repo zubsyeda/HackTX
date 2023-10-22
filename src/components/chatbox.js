@@ -22,13 +22,7 @@ const ChatBot = () => {
     setUserInput('');
   };
 
-  // 2. Send user input to the ChatGPT API
-  const sendToChatGPT = async (input) => {
-    const response = await axios.post('/your-chatgpt-api-endpoint', {
-      userMessage: input,
-    });
-    return response.data;
-  };
+
 
   // 3. Perform sentiment analysis and transformation
   const transformResponse = async (response) => {
@@ -37,34 +31,12 @@ const ChatBot = () => {
     var score = sentiment.analyze(response);
     if (score <= 0) {
         // output positive response using chatgpt api
-        const positiveResponse = await generatePositiveResponse(response);
-
-        response = positiveResponse;
+        
     }
 
     return response;
   };
 
-  const generatePositiveResponse = async (input) => {
-    // Replace with your ChatGPT API endpoint and API key
-    const chatGptApiUrl = 'YOUR_CHATGPT_API_ENDPOINT';
-    const apiKey = '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';
-  
-    try {
-      const response = await axios.post(chatGptApiUrl, {
-        prompt: `Transform this response to a customer to be friendlier: ${input}`,
-      }, {
-        headers: {
-          Authorization: `Bearer ${apiKey}`,
-        },
-      });
-  
-      return response.data.choices[0].text;
-    } catch (error) {
-      console.error(error);
-      return "I'm glad you're here! How can I assist you today?";
-    }
-  };
 
   return (
     <div>
