@@ -30,8 +30,7 @@ const ChatBot = () => {
     var sentiment = new Sentiment();
     var score = sentiment.analyze(response);
     if (score <= 0) {
-        // output positive response using chatgpt api
-        
+        // response is too negative
     }
 
     return response;
