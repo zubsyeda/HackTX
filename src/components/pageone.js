@@ -1,6 +1,6 @@
 // PageOne.js
 import React from 'react';
-import TableauReport from 'tableau-react';
+//import TableauReport from 'tableau-react';
 
 function PageOne() {
   return (
