@@ -1,6 +1,10 @@
 import React from 'react';
 import './App.css';
 import Dropdown from 'react-bootstrap/Dropdown';
+import PageOne from './components/pageone.js';
+import PageTwo from './components/pagetwo.js';
+import PageThree from './components/pagethree.js';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Import necessary components
 
 // function MyButton() {
 //   return (
@@ -17,29 +21,35 @@ function Menu() {
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
-        <Dropdown.Item href="#/pageone.js">Action</Dropdown.Item>
-        <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+        <Dropdown.Item href="/pageone">Amazon</Dropdown.Item>
+        <Dropdown.Item href="/pagetwo">Google</Dropdown.Item>
+        <Dropdown.Item href="/pagethree">Something</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
   );
 }
 
-function InputChatBox() {
-  return (
-    <form>
-      <input type="text" id="input"></input>
-    </form>
-  );
-}
+// function InputChatBox() {
+//   return (
+//     <form>
+//       <input type="text" id="input"></input>
+//     </form>
+//   );
+// }
 
 function App() {
   return (
     <div className="App">
       <h1 className="header">Welcome to ProjectName</h1>
       <Menu/>
-      <InputChatBox/>
-      <button className="send"><img alt="Send" /></button>
+        <Router>
+          <Routes>
+            <Route path="/pageone" element={<PageOne />} />
+            <Route path="/pagetwo" element={<PageTwo />} />
+            <Route path="/pagethree" element={<PageThree />} />
+          </Routes>
+        </Router>
+
     </div>
     
   );
