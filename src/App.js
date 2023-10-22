@@ -4,6 +4,8 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import PageOne from './components/pageone.js';
 import PageTwo from './components/pagetwo.js';
 import PageThree from './components/pagethree.js';
+import ChatBot from './components/chatbox.js';
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Import necessary components
 
 // function MyButton() {
@@ -24,6 +26,7 @@ function Menu() {
         <Dropdown.Item href="/pageone">Amazon</Dropdown.Item>
         <Dropdown.Item href="/pagetwo">Google</Dropdown.Item>
         <Dropdown.Item href="/pagethree">Something</Dropdown.Item>
+        <Dropdown.Item href="/chatbox">Something</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
   );
@@ -47,6 +50,7 @@ function App() {
             <Route path="/pageone" element={<PageOne />} />
             <Route path="/pagetwo" element={<PageTwo />} />
             <Route path="/pagethree" element={<PageThree />} />
+            <Route path="/chatbox" element={<ChatBot />} />
           </Routes>
         </Router>
         <div className='sidebar'>
