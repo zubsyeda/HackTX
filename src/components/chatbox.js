@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import Sentiment from 'sentiment';
-
-const chatGptApiUrl = 'https://api.openai.com/v1/engines/davinci/completions';
-const apiKey = process.env.REACT_APP_api_key; // Use process.env to access environment variables
 
 const ChatBot = () => {
   const [userInput, setUserInput] = useState('');
@@ -14,66 +10,29 @@ const ChatBot = () => {
   };
 
   const handleSendMessage = async () => {
-    // 1. Send user input to the ChatGPT API
-    const chatResponse = await sendToChatGPT(userInput);
-    const transformedResponse = await transformResponse(chatResponse);
+    // Analyze the sentiment of the user input
+    const sentiment = analyzeSentiment(userInput);
+    let response;
 
-    // 4. Update the chat log with user input and the model's response
-    setChatLog([...chatLog, { type: 'user', message: userInput }, { type: 'bot', message: transformedResponse }]);
+    if (sentiment.score <= 0) {
+      // Generate a response for negative sentiment
+      response = "Revise your feedback response to include more approachable and customer-friendly language";
+    } else {
+      // Provide a different response for positive sentiment or neutral input
+      response = "Thank you for your input. Is there anything else you'd like to discuss?";
+    }
 
-    // 5. Clear the user input
+    // Update the chat log with user input and the response
+    setChatLog([...chatLog, { type: 'user', message: userInput }, { type: 'bot', message: response }]);
+
+    // Clear the user input
     setUserInput('');
   };
 
-  const sendToChatGPT = async (userInput) => {
-    try {
-      const response = await axios.post(chatGptApiUrl, {
-        prompt: userInput,
-      }, {
-        headers: {
-          Authorization: `Bearer ${apiKey}`,
-        },
-      });
-  
-      return response.data.choices[0].text;
-    } catch (error) {
-      console.error(error);
-      return "I'm glad you're here! How can I assist you today?";
-    }
-  };
-  
-
-  // 3. Perform sentiment analysis and transformation
-  const transformResponse = async (response) => {
-    var Sentiment = require('sentiment');
-    var sentiment = new Sentiment();
-    var score = sentiment.analyze(response);
-    if (score <= 0) {
-        // output positive response using chatgpt api
-        const positiveResponse = await generatePositiveResponse(response);
-
-        response = positiveResponse;
-        
-    }
-
-    return response;
-  };
-
-  const generatePositiveResponse = async (input) => {
-    try {
-      const response = await axios.post(chatGptApiUrl, {
-        prompt: `Transform this response to a customer to be friendlier: ${input}`,
-      }, {
-        headers: {
-          Authorization: `Bearer ${apiKey}`,
-        },
-      });
-  
-      return response.data.choices[0].text;
-    } catch (error) {
-      console.error(error);
-      return "I'm glad you're here! How can I assist you today?";
-    }
+  // Analyze sentiment using the 'sentiment' library
+  const analyzeSentiment = (input) => {
+    const sentiment = new Sentiment();
+    return sentiment.analyze(input);
   };
 
   return (
