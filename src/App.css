@@ -110,6 +110,16 @@ body {
   background: linear-gradient(to bottom,#141414, #444444);
   padding: 20px;
   padding-bottom: 15%;
+  animation: gradientAnimation 10s linear infinite; /* Adjust the animation duration as needed */
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 0% 100%;
+  }
 }
 
 .subheaders {
